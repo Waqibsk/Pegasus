@@ -4,6 +4,7 @@
 #include <cstdint>
 #include <stdexcept>
 #include <string>
+#include <type_traits>
 #include <variant>
 #include <vector>
 
@@ -55,5 +56,23 @@ inline size_t ColumnSize(const Column &c) {
 inline Value ColumnGetValue(const Column &c, size_t row) {
   return std::visit([row](const auto &typed) { return typed.GetValue(row); },
                     c);
+}
+
+inline void ColumnAppend(Column &c, const Value &v) {
+  std::visit(
+      [&v](auto &typed) {
+        using T = typename std::decay_t<decltype(typed.data)>::value_type;
+        if (IsNull(v)) {
+          typed.AppendNull();
+          return;
+        }
+
+        if (!std::holds_alternative<T>(v)) {
+          throw std::runtime_error(
+              "ColumnAppend: value type does not match column type");
+        }
+        typed.Append(std::get<T>(v));
+      },
+      c);
 }
 } // namespace pegasus
