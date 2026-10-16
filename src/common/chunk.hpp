@@ -3,6 +3,7 @@
 #include "column.hpp"
 #include "value.hpp"
 #include <cstddef>
+#include <iostream>
 #include <stdexcept>
 #include <string>
 #include <utility>
@@ -17,7 +18,7 @@ private:
 public:
   Chunk(std::vector<std::string> column_names, std::vector<TypeId> column_types)
       : names_(std::move(column_names)) {
-    if (column_names.size() != column_types.size()) {
+    if (names_.size() != column_types.size()) {
       throw std::invalid_argument(
           "Chunk: column_names and column_types size mismatch ");
     }
@@ -33,7 +34,7 @@ public:
     return columns_.empty() ? 0 : ColumnSize(columns_[0]);
   }
   const std::string &ColumnName(size_t col) const { return names_.at(col); }
-  size_t ColumnName(std::string &name) const {
+  size_t ColumnIndex(const std::string &name) const {
     for (size_t i = 0; i < names_.size(); i++) {
       if (names_[i] == name) {
         return i;
