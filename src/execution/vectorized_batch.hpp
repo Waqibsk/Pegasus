@@ -4,7 +4,7 @@
 #include <stddef.h>
 #include <vector>
 
-#include "../chunk.hpp"
+#include "common/chunk.hpp"
 
 namespace pegasus {
 

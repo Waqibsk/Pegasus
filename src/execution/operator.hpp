@@ -1,6 +1,6 @@
 #pragma once
 
-#include "common/execution/vectorized_batch.hpp"
+#include "vectorized_batch.hpp"
 namespace pegasus {
 
 class Operator {

@@ -1,6 +1,6 @@
 
-#include "common/execution/table_scan_operator.hpp"
-#include "common/execution/vectorized_batch.hpp"
+#include "table_scan_operator.hpp"
+#include "vectorized_batch.hpp"
 #include <algorithm>
 #include <cstddef>
 namespace pegasus {

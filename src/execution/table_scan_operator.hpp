@@ -1,8 +1,8 @@
 #pragma once
 
 #include "common/chunk.hpp"
-#include "common/execution/operator.hpp"
-#include "common/execution/vectorized_batch.hpp"
+#include "operator.hpp"
+#include "vectorized_batch.hpp"
 #include <cstddef>
 #include <stddef.h>
 
