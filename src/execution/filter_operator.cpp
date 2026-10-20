@@ -14,9 +14,9 @@ bool FilterOperator::Next(VectorizedBatch &out) {
     out.source = child_batch_.source;
     out.selection.clear();
     out.selection.reserve(child_batch_.Count());
-    for (size_t row : child_batch_.selection) {
-      if (predicate_(child_batch_.GetValue(row, column_idx_))) {
-        out.selection.push_back(row);
+    for (size_t pos = 0; pos < child_batch_.Count(); ++pos) {
+      if (predicate_(child_batch_.GetValue(pos, column_idx_))) {
+        out.selection.push_back(child_batch_.selection[pos]);
       }
     }
     if (!out.selection.empty()) {

@@ -1,8 +1,11 @@
+#pragma once
+
 #include "execution/vectorized_batch.hpp"
 #include "operator.hpp"
 #include <memory>
 #include <stddef.h>
 #include <string>
+#include <vector>
 namespace pegasus {
 
 class ProjectOperator : public Operator {
@@ -16,7 +19,7 @@ public:
   bool Next(VectorizedBatch &out) override;
   void Close() override;
   const std::vector<size_t> &ProjectedColumns() { return column_indices_; }
-  const std::vector<std::string> &OutputColumns() { return output_names_; }
+  const std::vector<std::string> &OutputNames() { return output_names_; }
 
 private:
   std::unique_ptr<Operator> child_;

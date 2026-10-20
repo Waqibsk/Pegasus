@@ -35,14 +35,15 @@ test: build
 	ctest --test-dir $(BUILD_DIR) --output-on-failure
 
 ## Build and run every test file's executable, then the combined binary
+
 test-all: build
-	@set -e; for f in tests/test_*.cpp; do \
+	@set -e; for f in $$(find tests -name "test_*.cpp"); do \
 	    name=$$(basename $$f .cpp); \
 	    echo "==> $$name"; \
 	    ./$(BUILD_DIR)/tests/$$name --reporter console; \
 	done
-	@echo "==> test_common (combined)"
-	./$(BUILD_DIR)/tests/test_common --reporter console
+	@echo "==> test_all (combined)"
+	./$(BUILD_DIR)/tests/test_all --reporter console
 
 ## Run a single test file: make test-file FILE=test_value [ARGS="--filter ..."]
 test-file:

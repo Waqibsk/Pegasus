@@ -10,8 +10,6 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O3 -march=native -DNDEBUG")
 
 add_compile_options(-Wall -Wextra -Wpedantic)
 
-add_library(pegasus_core INTERFACE)
-target_include_directories(pegasus_core INTERFACE ${CMAKE_SOURCE_DIR}/src)
 add_subdirectory(src)
 
 enable_testing()
