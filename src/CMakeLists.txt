@@ -4,6 +4,7 @@ add_library(
     ./execution/filter_operator.cpp
     ./execution/project_operator.cpp
     ./execution/table_scan_operator.cpp
+    ./catalog/catalog.cpp
 )
 
 target_include_directories(pegasus_core PUBLIC ${CMAKE_SOURCE_DIR}/src)

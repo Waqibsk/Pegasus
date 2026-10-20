@@ -50,6 +50,20 @@ inline Column MakeColumn(TypeId type) {
     return Column{TypedColumn<double>{}};
   }
 }
+
+inline TypeId ColumnType(const Column &c) {
+  return std::visit(
+      [](const auto &typed) -> TypeId {
+        using T = typename std::decay_t<decltype(typed.data)>::value_type;
+        if constexpr (std::is_same_v<T, int64_t>)
+          return TypeId::Integer;
+        if constexpr (std::is_same_v<T, double>)
+          return TypeId::Double;
+        return TypeId::Varchar;
+      },
+      c);
+}
+
 inline size_t ColumnSize(const Column &c) {
   return std::visit([](const auto &typed) { return typed.Size(); }, c);
 }
