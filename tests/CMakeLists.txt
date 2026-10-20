@@ -30,7 +30,7 @@ foreach(test_src IN LISTS TEST_SOURCES)
     catch_discover_tests(${test_name})
 endforeach()
 
-# Combined binary with every test: ./build/tests/test_common
+# Combined binary with every test: ./build/tests/test_all
 add_executable(test_all ${TEST_SOURCES})
 target_link_libraries(test_all PRIVATE pegasus_core Catch2::Catch2WithMain)
 catch_discover_tests(test_all)

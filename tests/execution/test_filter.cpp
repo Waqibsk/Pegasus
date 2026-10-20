@@ -1,5 +1,7 @@
 #include <catch2/catch_test_macros.hpp>
 
+#include <vector>
+
 #include "execution/filter_operator.hpp"
 #include "execution/table_scan_operator.hpp"
 
