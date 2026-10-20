@@ -13,6 +13,7 @@ set(TEST_SOURCES
     ./execution/test_filter.cpp
     ./execution/test_projection.cpp
     ./execution/test_table_scan.cpp
+    ./execution/test_aggregate.cpp
 )
 
 include(CTest)
