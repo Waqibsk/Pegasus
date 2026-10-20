@@ -5,6 +5,8 @@ add_library(
     ./execution/project_operator.cpp
     ./execution/table_scan_operator.cpp
     ./catalog/catalog.cpp
+    ./parser/lexer.cpp
+    ./parser/parser.cpp
 )
 
 target_include_directories(pegasus_core PUBLIC ${CMAKE_SOURCE_DIR}/src)

@@ -15,6 +15,8 @@ set(TEST_SOURCES
     ./execution/test_table_scan.cpp
     ./execution/test_aggregate.cpp
     ./catalog/test_catalog.cpp
+    ./parser/test_lexer.cpp
+    ./parser/test_parser.cpp
 )
 
 include(CTest)
