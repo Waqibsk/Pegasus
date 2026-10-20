@@ -1,0 +1,2 @@
+add_executable(pegasus_bench bench_pegasus.cpp)
+target_link_libraries(pegasus_bench PRIVATE pegasus_core)

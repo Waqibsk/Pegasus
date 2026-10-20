@@ -6,6 +6,7 @@
 #   make test-file FILE=test_value          run one test file
 #   make test-file FILE=test_chunk ARGS="-s"  with Catch2 args
 #   make run                build, then run the pegasus binary
+#   make bench ROWS=5000000 build, then run the query benchmark
 #   make list-tests         list Catch2 test cases per test file
 #   make clean              remove build artifacts (keep config)
 #   make distclean          remove the whole build directory
@@ -17,6 +18,7 @@ JOBS       ?= $(shell nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || echo
 # Accepts "test_value", "test_value.cpp" or "tests/common/test_value.cpp"
 TEST_NAME := $(basename $(notdir $(FILE)))
 ARGS      ?=
+ROWS      ?= 5000000
 
 # Test sources live in subdirectories (tests/common, tests/execution, ...).
 # Prune any stray build tree (e.g. tests/build) so it is never picked up.
@@ -25,7 +27,7 @@ TEST_SRC     := $(firstword $(filter %/$(TEST_NAME).cpp $(TEST_NAME).cpp,$(TEST_
 
 CMAKE_FLAGS := -DCMAKE_BUILD_TYPE=$(BUILD_TYPE)
 
-.PHONY: all build configure test test-all test-file list-tests run clean distclean help
+.PHONY: all build configure test test-all test-file list-tests run bench clean distclean help
 
 all: build
 
@@ -76,6 +78,10 @@ list-tests: build
 ## Build and run the main pegasus demo binary
 run: build
 	$(BUILD_DIR)/src/pegasus
+
+## Build and run the query benchmark: make bench [ROWS=5000000]
+bench: build
+	$(BUILD_DIR)/bench/pegasus_bench $(ROWS)
 
 ## Delete build outputs but keep the CMake configuration
 clean:

@@ -9,7 +9,7 @@
 namespace pegasus {
 
 inline Chunk MakeMockChunk(size_t num_rows = 1000) {
-  Chunk chunk({"id", "values"}, {TypeId::Integer, TypeId::Double});
+  Chunk chunk({"id", "price"}, {TypeId::Integer, TypeId::Double});
   std::mt19937 rng(67);
   std::uniform_real_distribution<double> price_dist(1.0, 999.99);
 
