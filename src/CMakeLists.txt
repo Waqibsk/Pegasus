@@ -7,6 +7,8 @@ add_library(
     ./catalog/catalog.cpp
     ./parser/lexer.cpp
     ./parser/parser.cpp
+    ./planner/binder.cpp
+    ./planner/physical_planner.cpp
 )
 
 target_include_directories(pegasus_core PUBLIC ${CMAKE_SOURCE_DIR}/src)

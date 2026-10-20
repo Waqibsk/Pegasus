@@ -1,5 +1,6 @@
 #pragma once
 
+#include "common/compare_op.hpp"
 #include "common/value.hpp"
 #include "execution/vectorized_batch.hpp"
 #include "operator.hpp"
@@ -46,6 +47,8 @@ inline Predicate IsEqualInt(int64_t value) {
            std::get<int64_t>(v) == value;
   };
 }
+
+Predicate FromCompareOp(CompareOp op, const Value &literal);
 
 } // namespace predicates
 

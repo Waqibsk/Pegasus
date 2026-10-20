@@ -17,6 +17,8 @@ set(TEST_SOURCES
     ./catalog/test_catalog.cpp
     ./parser/test_lexer.cpp
     ./parser/test_parser.cpp
+    ./planner/test_binder.cpp
+    ./planner/test_physical_plan.cpp
 )
 
 include(CTest)
